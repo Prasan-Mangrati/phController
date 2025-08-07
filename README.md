@@ -46,4 +46,4 @@ This system is designed to regulate the pH of a water solution (e.g., fish tank,
 
 - Use a **separate manual pH meter** to cross-check readings periodically.
 - This helps verify system accuracy and troubleshoot if needed.
-# phController
+
