@@ -45,7 +45,7 @@ const int doseDuration = doseDurationInSeconds*1000;
 
 
 // Delay between pH checks of ph Sensor
-const int sensorReadInSeconds = 10 //(in Seconds)
+const int sensorReadInSeconds = 10; //(in Seconds)
 const int sensorReadInterval = sensorReadInSeconds*1000; 
 
 const float phTarget = 7.00;
@@ -53,7 +53,7 @@ const float phToleration = 0.25;
 
 // Change this after running pH calibration in the Serial Monitor output
 float phOffset = 0.00;          
-
+bool isFirst;
 
 void setup() {
   Serial.begin(9600);
@@ -63,6 +63,7 @@ void setup() {
   digitalWrite(BASE_PUMP_PIN, LOW);
   Serial.println("Dual pH Regulator Initialized");
   Serial.println("Uncomment phCalibration() in loop() to calibrate.");
+   isFirst = true;
 }
 
 void loop() {
@@ -72,6 +73,11 @@ void loop() {
 }
 
 void mainLoop() {
+  if(isFirst){
+    delay(2000);
+    isFirst=false;
+  }
+  Serial.println("Initiating Program...");
   float ph = getPh();
   Serial.print("pH: ");
   Serial.println(ph, 2);
